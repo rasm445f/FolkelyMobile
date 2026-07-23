@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Expo
+app/.expo/
+app/dist/
+app/web-build/
+app/*.orig.*
+app/.env*.local
+
+# Native
+app/ios/
+app/android/
+
+# Backend
+backend/dist/
+backend/.env
+
+# Prisma
+backend/prisma/migrations/dev.db*
+
+# Misc
+.DS_Store
+*.log
+npm-debug.*
+.vscode/
+.idea/
+*.pem
+.env

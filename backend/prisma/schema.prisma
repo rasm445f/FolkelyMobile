@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Stage {
+  id           String        @id @default(cuid())
+  name         String
+  lat          Float?
+  lng          Float?
+  performances Performance[]
+}
+
+model Artist {
+  id           String        @id @default(cuid())
+  name         String
+  genre        String?
+  description  String?
+  imageUrl     String?
+  performances Performance[]
+}
+
+model Performance {
+  id        String   @id @default(cuid())
+  startTime DateTime
+  endTime   DateTime
+
+  artistId String
+  artist   Artist @relation(fields: [artistId], references: [id])
+
+  stageId String
+  stage   Stage  @relation(fields: [stageId], references: [id])
+
+  @@index([startTime])
+}
+
+enum PoiType {
+  STAGE
+  FOOD
+  BAR
+  TOILET
+  ENTRANCE
+  EXIT
+  MEDICAL
+  INFO
+  CAMPING
+  OTHER
+}
+
+model PointOfInterest {
+  id          String  @id @default(cuid())
+  name        String
+  type        PoiType
+  lat         Float
+  lng         Float
+  description String?
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  createdAt DateTime @default(now())
+  priority  Int      @default(0)
+}

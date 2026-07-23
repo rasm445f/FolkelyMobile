@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: folkely-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: folkely
+      POSTGRES_PASSWORD: folkely
+      POSTGRES_DB: folkely
+    ports:
+      - "5432:5432"
+    volumes:
+      - folkely-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  folkely-postgres-data:
