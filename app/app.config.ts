@@ -1,7 +1,5 @@
 import type { ExpoConfig } from "expo/config";
 
-const androidGoogleMapsApiKey = process.env.ANDROID_GOOGLE_MAPS_API_KEY;
-
 const config: ExpoConfig = {
   name: "Folkely",
   slug: "folkely",
@@ -25,16 +23,7 @@ const config: ExpoConfig = {
     },
     predictiveBackGestureEnabled: false,
   },
-  plugins: [
-    "expo-router",
-    "expo-dev-client",
-    [
-      "react-native-maps",
-      {
-        androidGoogleMapsApiKey,
-      },
-    ],
-  ],
+  plugins: ["expo-router", "expo-dev-client"],
   experiments: {
     typedRoutes: true,
   },

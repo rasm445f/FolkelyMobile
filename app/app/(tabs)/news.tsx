@@ -1,5 +1,5 @@
 import { Host, List, ListItem } from "@expo/ui";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
 
@@ -7,15 +7,15 @@ export default function NewsScreen() {
   const { data: announcements, loading, error } = useApi(api.getAnnouncements);
 
   return (
-    <View style={styles.container}>
-      {loading && <ActivityIndicator style={styles.status} />}
-      {error && <Text style={styles.status}>Couldn't load announcements. Try again soon.</Text>}
+    <View className="flex-1">
+      {loading && <ActivityIndicator className="mt-6" />}
+      {error && <Text className="mt-6 text-center">Couldn't load announcements. Try again soon.</Text>}
       {!loading && !error && (announcements?.length ?? 0) === 0 && (
-        <Text style={styles.status}>No announcements yet.</Text>
+        <Text className="mt-6 text-center">No announcements yet.</Text>
       )}
 
       {!loading && !error && (announcements?.length ?? 0) > 0 && (
-        <Host style={styles.list}>
+        <Host style={{ flex: 1 }}>
           <List>
             {(announcements ?? []).map((announcement) => (
               <ListItem key={announcement.id} supportingText={announcement.body}>
@@ -28,9 +28,3 @@ export default function NewsScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  list: { flex: 1 },
-  status: { marginTop: 24, textAlign: "center" },
-});

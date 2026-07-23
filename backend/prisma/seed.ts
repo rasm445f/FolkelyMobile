@@ -2,11 +2,13 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Rough coordinates around Hundested, Denmark, for demo purposes.
-const ORIGIN = { lat: 55.9639, lng: 11.8594 };
+// The festival runs in late July, within Denmark's CEST (UTC+2) daylight-saving window, so
+// `hour`/`minute` below are Copenhagen local time; we convert to the matching UTC instant
+// before storing, since that's what the DB and API deal in.
+const COPENHAGEN_UTC_OFFSET_HOURS = 2;
 
 function dayAt(dayOffset: number, hour: number, minute = 0) {
-  const date = new Date(Date.UTC(2026, 6, 24 + dayOffset, hour, minute));
+  const date = new Date(Date.UTC(2026, 6, 24 + dayOffset, hour - COPENHAGEN_UTC_OFFSET_HOURS, minute));
   return date;
 }
 
@@ -17,12 +19,8 @@ async function main() {
   await prisma.pointOfInterest.deleteMany();
   await prisma.announcement.deleteMany();
 
-  const mainStage = await prisma.stage.create({
-    data: { name: "Main Stage", lat: ORIGIN.lat, lng: ORIGIN.lng },
-  });
-  const beachStage = await prisma.stage.create({
-    data: { name: "Beach Stage", lat: ORIGIN.lat + 0.002, lng: ORIGIN.lng + 0.001 },
-  });
+  const mainStage = await prisma.stage.create({ data: { name: "Main Stage" } });
+  const beachStage = await prisma.stage.create({ data: { name: "Beach Stage" } });
 
   const artists = await Promise.all(
     [
@@ -42,13 +40,16 @@ async function main() {
     ],
   });
 
+  // x/y are percentages (0-100) of the map image's width/height, not geographic coordinates.
   await prisma.pointOfInterest.createMany({
     data: [
-      { name: "Main Entrance", type: "ENTRANCE", lat: ORIGIN.lat - 0.001, lng: ORIGIN.lng - 0.001 },
-      { name: "First Aid", type: "MEDICAL", lat: ORIGIN.lat + 0.0005, lng: ORIGIN.lng },
-      { name: "Food Trucks", type: "FOOD", lat: ORIGIN.lat + 0.0008, lng: ORIGIN.lng + 0.0005 },
-      { name: "Bar", type: "BAR", lat: ORIGIN.lat + 0.0003, lng: ORIGIN.lng + 0.0008 },
-      { name: "Toilets", type: "TOILET", lat: ORIGIN.lat - 0.0003, lng: ORIGIN.lng + 0.0004 },
+      { name: "Main Stage", type: "STAGE", x: 50, y: 30 },
+      { name: "Beach Stage", type: "STAGE", x: 75, y: 68 },
+      { name: "Main Entrance", type: "ENTRANCE", x: 50, y: 95 },
+      { name: "First Aid", type: "MEDICAL", x: 40, y: 50 },
+      { name: "Food Trucks", type: "FOOD", x: 60, y: 45 },
+      { name: "Bar", type: "BAR", x: 65, y: 55 },
+      { name: "Toilets", type: "TOILET", x: 30, y: 60 },
     ],
   });
 

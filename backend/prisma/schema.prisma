@@ -10,8 +10,6 @@ datasource db {
 model Stage {
   id           String        @id @default(cuid())
   name         String
-  lat          Float?
-  lng          Float?
   performances Performance[]
 }
 
@@ -55,8 +53,10 @@ model PointOfInterest {
   id          String  @id @default(cuid())
   name        String
   type        PoiType
-  lat         Float
-  lng         Float
+  // Position as a percentage (0-100) of the map image's width/height, for overlaying a pin
+  // on a static venue map graphic -- not a real-world geographic coordinate.
+  x           Float
+  y           Float
   description String?
 }
 

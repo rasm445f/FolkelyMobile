@@ -14,7 +14,8 @@
     "backend": "npm run dev --workspace backend"
   },
   "overrides": {
-    "react": "19.2.3"
+    "react": "19.2.3",
+    "react-native-reanimated": "4.5.0"
   },
   "devDependencies": {
     "patch-package": "^8.0.1"

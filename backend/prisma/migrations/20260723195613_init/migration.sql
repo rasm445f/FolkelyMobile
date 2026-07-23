@@ -5,8 +5,6 @@ CREATE TYPE "PoiType" AS ENUM ('STAGE', 'FOOD', 'BAR', 'TOILET', 'ENTRANCE', 'EX
 CREATE TABLE "Stage" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "lat" DOUBLE PRECISION,
-    "lng" DOUBLE PRECISION,
 
     CONSTRAINT "Stage_pkey" PRIMARY KEY ("id")
 );
@@ -38,8 +36,8 @@ CREATE TABLE "PointOfInterest" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "type" "PoiType" NOT NULL,
-    "lat" DOUBLE PRECISION NOT NULL,
-    "lng" DOUBLE PRECISION NOT NULL,
+    "x" DOUBLE PRECISION NOT NULL,
+    "y" DOUBLE PRECISION NOT NULL,
     "description" TEXT,
 
     CONSTRAINT "PointOfInterest_pkey" PRIMARY KEY ("id")

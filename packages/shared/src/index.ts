@@ -13,8 +13,6 @@ export type PoiType =
 export interface Stage {
   id: string;
   name: string;
-  lat: number | null;
-  lng: number | null;
 }
 
 export interface Artist {
@@ -39,8 +37,9 @@ export interface PointOfInterest {
   id: string;
   name: string;
   type: PoiType;
-  lat: number;
-  lng: number;
+  // Percentage (0-100) position on the map image, not a geographic coordinate.
+  x: number;
+  y: number;
   description: string | null;
 }
 
