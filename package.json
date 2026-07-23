@@ -1,0 +1,23 @@
+{
+  "name": "folkely-mobile",
+  "private": true,
+  "workspaces": [
+    "app",
+    "backend",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "patch-package",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "app": "npm run start --workspace app",
+    "backend": "npm run dev --workspace backend"
+  },
+  "overrides": {
+    "react": "19.2.3",
+    "react-native-reanimated": "4.5.0"
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.1"
+  }
+}
