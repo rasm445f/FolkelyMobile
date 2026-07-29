@@ -50,3 +50,12 @@ export interface Announcement {
   createdAt: string;
   priority: number;
 }
+
+export interface Story {
+  id: string;
+  title: string;
+  imageUrl: string | null;
+  body: string | null;
+  createdAt: string;
+  priority: number;
+}

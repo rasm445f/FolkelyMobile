@@ -1,4 +1,4 @@
-import type { Announcement, Artist, Performance, PointOfInterest, Stage } from "@folkely/shared";
+import type { Announcement, Artist, Performance, PointOfInterest, Stage, Story } from "@folkely/shared";
 import { Platform } from "react-native";
 
 // The Android emulator's "localhost" refers to the emulator itself, not the host machine —
@@ -23,4 +23,6 @@ export const api = {
   getPerformances: () => get<Performance[]>("/api/performances"),
   getPois: () => get<PointOfInterest[]>("/api/map/pois"),
   getAnnouncements: () => get<Announcement[]>("/api/news"),
+  getStories: () => get<Story[]>("/api/stories"),
+  getStory: (id: string) => get<Story>(`/api/stories/${id}`),
 };

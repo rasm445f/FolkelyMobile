@@ -18,6 +18,7 @@ async function main() {
   await prisma.stage.deleteMany();
   await prisma.pointOfInterest.deleteMany();
   await prisma.announcement.deleteMany();
+  await prisma.story.deleteMany();
 
   const mainStage = await prisma.stage.create({ data: { name: "Main Stage" } });
   const beachStage = await prisma.stage.create({ data: { name: "Beach Stage" } });
@@ -59,6 +60,13 @@ async function main() {
       body: "Gates open at 16:00 each day. Have a great festival!",
       priority: 1,
     },
+  });
+
+  await prisma.story.createMany({
+    data: [
+      { title: "Welcome to Folkely", body: "Three days, two stages, one unforgettable weekend.", priority: 1 },
+      { title: "Meet Nordlys", body: "Opening the Main Stage this Friday at 18:00." },
+    ],
   });
 }
 

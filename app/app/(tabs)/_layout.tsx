@@ -3,14 +3,14 @@ import { NativeTabs } from "expo-router/unstable-native-tabs";
 export default function TabsLayout() {
   return (
     <NativeTabs>
-      <NativeTabs.Trigger name="news">
+      <NativeTabs.Trigger name="home">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("../../assets/icons/tab-home.png")}
           renderingMode="template"
         />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="index">
+      <NativeTabs.Trigger name="lineup">
         <NativeTabs.Trigger.Label>Lineup</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("../../assets/icons/tab-lineup.png")}

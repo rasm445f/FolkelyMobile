@@ -67,3 +67,12 @@ model Announcement {
   createdAt DateTime @default(now())
   priority  Int      @default(0)
 }
+
+model Story {
+  id        String   @id @default(cuid())
+  title     String
+  imageUrl  String?
+  body      String?
+  createdAt DateTime @default(now())
+  priority  Int      @default(0)
+}
