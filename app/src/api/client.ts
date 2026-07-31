@@ -21,6 +21,7 @@ export const api = {
   getArtists: () => get<Artist[]>("/api/artists"),
   getStages: () => get<Stage[]>("/api/stages"),
   getPerformances: () => get<Performance[]>("/api/performances"),
+  getPerformance: (id: string) => get<Performance>(`/api/performances/${id}`),
   getPois: () => get<PointOfInterest[]>("/api/map/pois"),
   getAnnouncements: () => get<Announcement[]>("/api/news"),
   getStories: () => get<Story[]>("/api/stories"),

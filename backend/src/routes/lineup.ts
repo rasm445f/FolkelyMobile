@@ -30,3 +30,18 @@ lineupRouter.get(
     res.json(performances);
   }),
 );
+
+lineupRouter.get(
+  "/performances/:id",
+  asyncHandler(async (req, res) => {
+    const performance = await prisma.performance.findUnique({
+      where: { id: req.params.id },
+      include: { artist: true, stage: true },
+    });
+    if (!performance) {
+      res.status(404).json({ error: "Performance not found" });
+      return;
+    }
+    res.json(performance);
+  }),
+);
