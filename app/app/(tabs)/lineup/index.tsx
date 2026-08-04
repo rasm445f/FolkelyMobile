@@ -1,7 +1,7 @@
 import { SegmentedControl } from "@expo/ui/community/segmented-control";
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { useMemo, useState } from "react";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
 import { PerformanceTile } from "@/components/PerformanceTile";
@@ -56,11 +56,9 @@ export default function LineupScreen() {
 
         <View className="gap-3">
           {dayPerformances.map((performance) => (
-            <PerformanceTile
-              key={performance.id}
-              performance={performance}
-              bold={performance.stage.name === MAIN_STAGE_NAME}
-            />
+            <Pressable key={performance.id} onPress={() => router.push(`/performance/${performance.id}`)}>
+              <PerformanceTile performance={performance} bold={performance.stage.name === MAIN_STAGE_NAME} />
+            </Pressable>
           ))}
         </View>
       </ScrollView>
