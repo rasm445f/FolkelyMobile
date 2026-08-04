@@ -6,6 +6,7 @@ import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
 import { ArtistBanner } from "@/components/ArtistBanner";
 
+
 const FESTIVAL_TIME_ZONE = "Europe/Copenhagen";
 
 function formatTime(iso: string) {
@@ -59,6 +60,7 @@ export default function PerformanceDetailsScreen() {
                 {formatTime(performance.startTime)} - {formatTime(performance.endTime)} · {performance.stage.name}
               </Text>
             )}
+
 
             {performance.artist.description && (
               <Text className="mt-4 text-stone-600">{performance.artist.description}</Text>
