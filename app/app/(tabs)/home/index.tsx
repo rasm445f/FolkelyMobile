@@ -26,12 +26,6 @@ export default function HomeScreen() {
       />
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
-        {["Quatro-SemiBold", "Quatro-Bold", "Quatro-Black", "Quatro-UltraBlack"].map((f) => (
-          <Text key={f} style={{ fontFamily: f, fontSize: 24 }}>
-            {f}
-          </Text>
-        ))}
-
         {loading && <ActivityIndicator className="mt-6" />}
         {error && <Text className="mt-6 text-center">Couldn't load stories. Try again soon.</Text>}
         {!loading && !error && (stories?.length ?? 0) === 0 && (
