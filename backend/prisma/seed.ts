@@ -105,7 +105,7 @@ async function main() {
         priority: 1,
       },
       {
-        title: "Meet Nordlys",
+        title: "Meet Artigeardit",
         body: "Opening the Main Stage this Friday at 18:00.",
       },
     ],
