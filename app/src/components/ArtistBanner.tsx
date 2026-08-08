@@ -4,7 +4,9 @@ import { Image, Text, View } from "react-native";
 export function ArtistBanner({ artist }: { artist: Artist }) {
   const overlay = (
     <View className="absolute inset-x-0 bottom-0 bg-black/55 px-4 pb-4 pt-10">
-      <Text className="text-3xl font-extrabold text-white">{artist.name}</Text>
+      <Text className="font-hoefler text-3xl italic text-white">
+        {artist.name}
+      </Text>
       {artist.genre && <Text className="mt-1 text-base text-white/80">{artist.genre}</Text>}
     </View>
   );
