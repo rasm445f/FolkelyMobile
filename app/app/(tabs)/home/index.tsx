@@ -9,9 +9,29 @@ export default function HomeScreen() {
 
   return (
     <View className="flex-1">
-      <Stack.Screen options={{ title: "Folkely", headerTransparent: true, headerLargeTitle: true }} />
+      <Stack.Screen
+        options={{
+          title: "FOLKELY",
+          // headerLargeTitle only takes effect on iOS — Android always shows the compact header.
+          headerLargeTitle: true,
+          // className doesn't reliably apply inside React Navigation's header styles (its own
+          // inline styles interfere) — use style objects directly here instead.
+          // headerTitleStyle/headerLargeTitleStyle only support fontFamily/fontSize/fontWeight/
+          // color (native UINavigationBar title label) — no fontStyle, so the italic PostScript
+          // name has to be used directly here.
+          headerLargeTitleStyle: { fontFamily: "Quatro-BlackItalic", fontSize: 34 },
+          headerTitleStyle: { fontFamily: "Quatro-UltraBlackItalic", fontSize: 17 },
+          headerTransparent: true,
+        }}
+      />
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
+        {["Quatro-SemiBold", "Quatro-Bold", "Quatro-Black", "Quatro-UltraBlack"].map((f) => (
+          <Text key={f} style={{ fontFamily: f, fontSize: 24 }}>
+            {f}
+          </Text>
+        ))}
+
         {loading && <ActivityIndicator className="mt-6" />}
         {error && <Text className="mt-6 text-center">Couldn't load stories. Try again soon.</Text>}
         {!loading && !error && (stories?.length ?? 0) === 0 && (

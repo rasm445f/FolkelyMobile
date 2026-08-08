@@ -1,0 +1,8 @@
+{
+  "android": {
+    "package": "com.zugqeskafvytqyzma7.folkelymobile"
+  },
+  "ios": {
+    "bundleIdentifier": "com.zugqeskafvytqyzma7.folkelymobile"
+  }
+}

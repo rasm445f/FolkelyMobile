@@ -8,7 +8,15 @@ const prisma = new PrismaClient();
 const COPENHAGEN_UTC_OFFSET_HOURS = 2;
 
 function dayAt(dayOffset: number, hour: number, minute = 0) {
-  const date = new Date(Date.UTC(2026, 6, 24 + dayOffset, hour - COPENHAGEN_UTC_OFFSET_HOURS, minute));
+  const date = new Date(
+    Date.UTC(
+      2026,
+      6,
+      24 + dayOffset,
+      hour - COPENHAGEN_UTC_OFFSET_HOURS,
+      minute,
+    ),
+  );
   return date;
 }
 
@@ -21,12 +29,19 @@ async function main() {
   await prisma.story.deleteMany();
 
   const mainStage = await prisma.stage.create({ data: { name: "Main Stage" } });
-  const beachStage = await prisma.stage.create({ data: { name: "Beach Stage" } });
+  const beachStage = await prisma.stage.create({
+    data: { name: "Beach Stage" },
+  });
 
   const artists = await Promise.all(
     [
-      { name: "Nordlys", genre: "Electronic" },
-      { name: "Havblik", genre: "Indie" },
+      {
+        name: "Artigeardit",
+        genre: "Hip-hop and rap music",
+        description:
+          "Artigeardit is a Danish hip-hop and rap artist known for his energetic performances and socially conscious lyrics.",
+      },
+      { name: "Blæst", genre: "Dansk pop" },
       { name: "Sildeflåden", genre: "Folk" },
       { name: "Kysten", genre: "Pop" },
     ].map((a) => prisma.artist.create({ data: a })),
@@ -34,10 +49,30 @@ async function main() {
 
   await prisma.performance.createMany({
     data: [
-      { artistId: artists[0].id, stageId: mainStage.id, startTime: dayAt(0, 18), endTime: dayAt(0, 19) },
-      { artistId: artists[1].id, stageId: beachStage.id, startTime: dayAt(0, 19, 30), endTime: dayAt(0, 20, 30) },
-      { artistId: artists[2].id, stageId: mainStage.id, startTime: dayAt(1, 17), endTime: dayAt(1, 18) },
-      { artistId: artists[3].id, stageId: mainStage.id, startTime: dayAt(2, 20), endTime: dayAt(2, 21, 30) },
+      {
+        artistId: artists[0].id,
+        stageId: mainStage.id,
+        startTime: dayAt(0, 18),
+        endTime: dayAt(0, 19),
+      },
+      {
+        artistId: artists[1].id,
+        stageId: beachStage.id,
+        startTime: dayAt(0, 19, 30),
+        endTime: dayAt(0, 20, 30),
+      },
+      {
+        artistId: artists[2].id,
+        stageId: mainStage.id,
+        startTime: dayAt(1, 17),
+        endTime: dayAt(1, 18),
+      },
+      {
+        artistId: artists[3].id,
+        stageId: mainStage.id,
+        startTime: dayAt(2, 20),
+        endTime: dayAt(2, 21, 30),
+      },
     ],
   });
 
@@ -64,8 +99,15 @@ async function main() {
 
   await prisma.story.createMany({
     data: [
-      { title: "Welcome to Folkely", body: "Three days, two stages, one unforgettable weekend.", priority: 1 },
-      { title: "Meet Nordlys", body: "Opening the Main Stage this Friday at 18:00." },
+      {
+        title: "Welcome to Folkely",
+        body: "Three days, two stages, one unforgettable weekend.",
+        priority: 1,
+      },
+      {
+        title: "Meet Nordlys",
+        body: "Opening the Main Stage this Friday at 18:00.",
+      },
     ],
   });
 }
