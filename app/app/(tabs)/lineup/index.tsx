@@ -11,7 +11,7 @@ import { PerformanceTile } from "@/components/PerformanceTile";
 // shouldn't change what showtime they see.
 const FESTIVAL_TIME_ZONE = "Europe/Copenhagen";
 
-const MAIN_STAGE_NAME = "Main Stage";
+const MAIN_STAGE_NAME = "Hovedscene";
 
 const FESTIVAL_DAYS = [
   { label: "Fredag", date: "2026-07-24" },

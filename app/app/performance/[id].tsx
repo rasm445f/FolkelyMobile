@@ -63,9 +63,7 @@ export default function PerformanceDetailsScreen() {
 
 
             {performance.artist.description && (
-              <Text className="font-quatro mt-4 text-stone-600">
-                {performance.artist.description}
-              </Text>
+              <Text className="font-quatro mt-4 text-stone-600">{performance.artist.description}</Text>
             )}
           </View>
         </ScrollView>
