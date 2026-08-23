@@ -2,7 +2,7 @@ import { NativeTabs } from "expo-router/unstable-native-tabs";
 
 export default function TabsLayout() {
   return (
-    <NativeTabs>
+    <NativeTabs labelStyle={{ fontFamily: "Quatro-SemiBold" }}>
       <NativeTabs.Trigger name="home">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon

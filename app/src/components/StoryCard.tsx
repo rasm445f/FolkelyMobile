@@ -1,5 +1,6 @@
 import type { Story } from "@folkely/shared";
-import { ImageBackground, Text, View } from "react-native";
+import { ImageBackground, View } from "react-native";
+import { Text } from "@/components/Text";
 
 const STORY_TIME_ZONE = "Europe/Copenhagen";
 
@@ -14,8 +15,8 @@ function formatStoryDate(iso: string) {
 export function StoryCard({ story }: { story: Story }) {
   const overlay = (
     <View className="absolute inset-x-0 bottom-0 bg-black/55 px-4 py-3">
-      <Text className="text-sm font-semibold text-white">{formatStoryDate(story.createdAt)}</Text>
-      <Text className="mt-1 text-2xl font-extrabold uppercase text-white">{story.title}</Text>
+      <Text className="text-sm font-quatro-semibold text-white">{formatStoryDate(story.createdAt)}</Text>
+      <Text className="mt-1 text-2xl font-quatro-black uppercase text-white">{story.title}</Text>
     </View>
   );
 

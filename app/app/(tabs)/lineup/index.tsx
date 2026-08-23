@@ -1,10 +1,11 @@
 import { SegmentedControl } from "@expo/ui/community/segmented-control";
 import { Stack, router } from "expo-router";
 import { useMemo, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
 import { PerformanceTile } from "@/components/PerformanceTile";
+import { Text } from "@/components/Text";
 
 // Always render in the festival's own timezone, not the viewer's device timezone —
 // this is an in-person event, so a visitor's phone being set to a different zone
@@ -38,7 +39,15 @@ export default function LineupScreen() {
 
   return (
     <View className="flex-1">
-      <Stack.Screen options={{ title: "Lineup", headerTransparent: true, headerLargeTitle: true }} />
+      <Stack.Screen
+        options={{
+          title: "Lineup",
+          headerTransparent: true,
+          headerLargeTitle: true,
+          headerLargeTitleStyle: { fontFamily: "Quatro-Bold" },
+          headerTitleStyle: { fontFamily: "Quatro-SemiBold" },
+        }}
+      />
 
       <ScrollView contentContainerStyle={{ padding: 16 }}>
         <SegmentedControl
