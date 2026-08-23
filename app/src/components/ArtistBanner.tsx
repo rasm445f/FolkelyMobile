@@ -1,5 +1,6 @@
 import type { Artist } from "@folkely/shared";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
+import { Text } from "@/components/Text";
 
 export function ArtistBanner({ artist }: { artist: Artist }) {
   const overlay = (

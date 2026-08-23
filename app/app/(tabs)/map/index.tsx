@@ -2,9 +2,10 @@ import type { PointOfInterest, PoiType } from "@folkely/shared";
 import { Stack } from "expo-router";
 import { useHeaderHeight } from "expo-router/react-navigation";
 import { useState } from "react";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
+import { Text } from "@/components/Text";
 
 // Percentage-based x/y (see PointOfInterest.x/y) are overlaid on this placeholder.
 // Swap in the real venue map graphic here once it's ready, e.g.
@@ -29,7 +30,15 @@ export default function MapScreen() {
 
   return (
     <View className="flex-1" style={{ paddingTop: headerHeight }}>
-      <Stack.Screen options={{ title: "Map", headerTransparent: true, headerLargeTitle: true }} />
+      <Stack.Screen
+        options={{
+          title: "Map",
+          headerTransparent: true,
+          headerLargeTitle: true,
+          headerLargeTitleStyle: { fontFamily: "Quatro-Bold" },
+          headerTitleStyle: { fontFamily: "Quatro-SemiBold" },
+        }}
+      />
 
       {loading && <ActivityIndicator className="mt-6" />}
       {error && <Text className="mt-6 text-center">Couldn't load the map. Try again soon.</Text>}
@@ -48,7 +57,7 @@ export default function MapScreen() {
           </View>
 
           <View className="p-4">
-            <Text className="text-base font-semibold">{selected ? selected.name : "Tap a pin for details"}</Text>
+            <Text className="text-base font-quatro-semibold">{selected ? selected.name : "Tap a pin for details"}</Text>
             {selected?.description && <Text className="mt-1 text-stone-600">{selected.description}</Text>}
           </View>
         </>

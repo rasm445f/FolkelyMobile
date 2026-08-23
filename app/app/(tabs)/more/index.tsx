@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
 import { useHeaderHeight } from "expo-router/react-navigation";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
+import { Text } from "@/components/Text";
 
 const FAQ = [
   { question: "When do gates open?", answer: "Gates open at 14:00 each day." },
@@ -13,19 +14,27 @@ export default function MoreScreen() {
 
   return (
     <View className="flex-1">
-      <Stack.Screen options={{ title: "More", headerTransparent: true, headerLargeTitle: true }} />
+      <Stack.Screen
+        options={{
+          title: "More",
+          headerTransparent: true,
+          headerLargeTitle: true,
+          headerLargeTitleStyle: { fontFamily: "Quatro-Bold" },
+          headerTitleStyle: { fontFamily: "Quatro-SemiBold" },
+        }}
+      />
 
       <ScrollView className="flex-1" contentContainerStyle={{ paddingTop: headerHeight }}>
         <View className="p-4">
-          <Text className="text-lg font-semibold">My Program</Text>
+          <Text className="text-lg font-quatro-semibold">My Program</Text>
           <Text className="mt-2 text-stone-600">Your favorited performances will show up here.</Text>
         </View>
 
         <View className="p-4">
-          <Text className="text-lg font-semibold">FAQ</Text>
+          <Text className="text-lg font-quatro-semibold">FAQ</Text>
           {FAQ.map((item) => (
             <View key={item.question} className="mt-3">
-              <Text className="font-medium">{item.question}</Text>
+              <Text className="font-quatro-medium">{item.question}</Text>
               <Text className="mt-1 text-stone-600">{item.answer}</Text>
             </View>
           ))}

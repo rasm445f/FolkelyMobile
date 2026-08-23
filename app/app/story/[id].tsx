@@ -1,8 +1,9 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useHeaderHeight } from "expo-router/react-navigation";
-import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
+import { Text } from "@/components/Text";
 
 export default function StoryDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -12,7 +13,12 @@ export default function StoryDetailsScreen() {
   return (
     <View className="flex-1">
       <Stack.Screen
-        options={{ title: story?.title ?? "Story", headerBackButtonDisplayMode: "minimal", headerTransparent: true }}
+        options={{
+          title: story?.title ?? "Story",
+          headerBackButtonDisplayMode: "minimal",
+          headerTransparent: true,
+          headerTitleStyle: { fontFamily: "Quatro-SemiBold" },
+        }}
       />
 
       {loading && <ActivityIndicator style={{ marginTop: headerHeight + 24 }} />}
@@ -24,7 +30,7 @@ export default function StoryDetailsScreen() {
         <ScrollView contentContainerStyle={!story.imageUrl ? { paddingTop: headerHeight } : undefined}>
           {story.imageUrl && <Image source={{ uri: story.imageUrl }} className="aspect-[2/1] w-full" />}
           <View className="p-4">
-            <Text className="text-2xl font-extrabold">{story.title}</Text>
+            <Text className="text-2xl font-quatro-black">{story.title}</Text>
             {story.body && <Text className="mt-2 text-stone-600">{story.body}</Text>}
           </View>
         </ScrollView>

@@ -1,10 +1,11 @@
 import { Host, HStack, Label } from "@expo/ui/swift-ui";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useHeaderHeight } from "expo-router/react-navigation";
-import { ActivityIndicator, Platform, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Platform, ScrollView, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
 import { ArtistBanner } from "@/components/ArtistBanner";
+import { Text } from "@/components/Text";
 
 
 const FESTIVAL_TIME_ZONE = "Europe/Copenhagen";
@@ -56,7 +57,7 @@ export default function PerformanceDetailsScreen() {
                 </HStack>
               </Host>
             ) : (
-              <Text className="text-base font-semibold">
+              <Text className="text-base font-quatro-semibold">
                 {formatTime(performance.startTime)} - {formatTime(performance.endTime)} · {performance.stage.name}
               </Text>
             )}

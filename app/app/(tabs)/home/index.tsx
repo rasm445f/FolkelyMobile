@@ -1,8 +1,9 @@
 import { Stack, router } from "expo-router";
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, View } from "react-native";
 import { api } from "@/api/client";
 import { useApi } from "@/api/useApi";
 import { StoryCard } from "@/components/StoryCard";
+import { Text } from "@/components/Text";
 
 export default function HomeScreen() {
   const { data: stories, loading, error } = useApi(api.getStories);
@@ -19,7 +20,7 @@ export default function HomeScreen() {
           // headerTitleStyle/headerLargeTitleStyle only support fontFamily/fontSize/fontWeight/
           // color (native UINavigationBar title label) — no fontStyle, so the italic PostScript
           // name has to be used directly here.
-          headerLargeTitleStyle: { fontFamily: "Quatro-BlackItalic", fontSize: 34 },
+          headerLargeTitleStyle: { fontFamily: "Quatro-UltraBlackItalic", fontSize: 34 },
           headerTitleStyle: { fontFamily: "Quatro-UltraBlackItalic", fontSize: 17 },
           headerTransparent: true,
         }}
